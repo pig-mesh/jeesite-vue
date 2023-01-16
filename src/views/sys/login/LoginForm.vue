@@ -75,9 +75,9 @@
       <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
         {{ t('sys.login.loginButton') }}
       </Button>
-      <!-- <Button size="large" class="mt-4 enter-x" block @click="handleRegister">
-        {{ t('sys.login.registerButton') }}
-      </Button> -->
+      <Button size="large" class="mt-4 enter-x" block @click="handleSSOLogin">
+        PIG SSO 登录
+      </Button>
     </FormItem>
     <ARow class="enter-x md:pl-3">
       <ACol :md="7" :xs="24">
@@ -97,8 +97,8 @@
       </ACol>
     </ARow>
 
-    <Divider class="enter-x">{{ t('sys.login.otherSignIn') }}</Divider>
 
+    <Divider class="enter-x">{{ t('sys.login.otherSignIn') }}</Divider>
     <div class="flex justify-evenly enter-x" :class="`${prefixCls}-sign-in-way`">
       <GithubFilled />
       <WechatFilled />
@@ -214,6 +214,10 @@
     } finally {
       loading.value = false;
     }
+  }
+
+  const handleSSOLogin = () => {
+    window.location.href = "http://127.0.0.1:3000/oauth2/authorize?client_id=jeesite&response_type=code&scope=server&redirect_uri=http://127.0.0.1:3100/sso&code_challenge=jeesite&code_challenge_method=S256"
   }
 
   function selectText(id: string) {

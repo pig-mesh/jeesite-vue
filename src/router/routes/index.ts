@@ -36,6 +36,15 @@ export const LoginRoute: AppRouteRecordRaw = {
   },
 };
 
+export const SsoRoute: AppRouteRecordRaw = {
+  path: '/sso',
+  name: 'Sso',
+  component: () => import('/@/views/sys/login/sso.vue'),
+  meta: {
+    title: "sso登录",
+  },
+};
+
 const ModPwdRoute: AppRouteModule = {
   path: '/modPwd',
   name: 'ModPwd',
@@ -49,6 +58,7 @@ const ModPwdRoute: AppRouteModule = {
 // Basic routing without permission
 export const basicRoutes = [
   LoginRoute,
+  SsoRoute,
   ModPwdRoute,
   RootRoute,
   ...mainOutRoutes,

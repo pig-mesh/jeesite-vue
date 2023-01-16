@@ -9,4 +9,6 @@ export enum PageEnum {
   ERROR_LOG_PAGE = '/error-log/list',
   // basic login path
   MOD_PWD_PAGE = '/modPwd',
+
+  SSO_PAGE = '/sso'
 }

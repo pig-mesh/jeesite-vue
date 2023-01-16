@@ -11,7 +11,14 @@ import { RoleEnum } from '/@/enums/roleEnum';
 import { PageEnum } from '/@/enums/pageEnum';
 import { TOKEN_KEY, ROLES_KEY, USER_INFO_KEY, SESSION_TIMEOUT_KEY } from '/@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
-import { loginApi, logoutApi, userInfoApi, LoginParams, LoginResult } from '/@/api/sys/login';
+import {
+  loginApi,
+  logoutApi,
+  userInfoApi,
+  LoginParams,
+  LoginResult,
+  loginSso
+} from '/@/api/sys/login';
 // import { useI18n } from '/@/hooks/web/useI18n';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { router } from '/@/router';
@@ -136,6 +143,22 @@ export const useUserStore = defineStore({
       await this.afterLoginAction(res, goHome);
       return res;
     },
+
+    async ssoLogin(ssocode: string){
+      const res = await loginSso(ssocode);
+      if (res.result !== 'true') {
+        showMessage(res.message);
+        return res;
+      }
+      const userInfo = res.user;
+      this.setUserInfo(userInfo);
+      this.initPageCache(res);
+      this.setSessionTimeout(false);
+      await this.afterLoginAction(res, true);
+      return res;
+    },
+
+
     // async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
     async afterLoginAction(res: LoginResult, goHome?: boolean) {
       if (!this.getToken) return null;

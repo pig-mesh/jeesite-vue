@@ -52,6 +52,16 @@ export const loginApi = (params: LoginParams, mode: ErrorMessageMode = 'none') =
   );
 };
 
+export const loginSso = (ssocode :string) => {
+  return defHttp.post<LoginResult>({
+    url: adminPath + '/account/loginByCode',
+    params: {
+      code: ssocode
+    }
+  })
+}
+
+
 export const switchSkin = (name = '') => {
   if (name == '') {
     const appStore = useAppStore();

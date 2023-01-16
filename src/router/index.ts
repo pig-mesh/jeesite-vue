@@ -26,6 +26,8 @@ export const router = createRouter({
 export function resetRouter() {
   router.getRoutes().forEach((route) => {
     const { name } = route;
+    console.log(name,'name')
+    console.log(WHITE_NAME_LIST,'WHITE_NAME_LIST')
     if (name && !WHITE_NAME_LIST.includes(name as string)) {
       router.hasRoute(name) && router.removeRoute(name);
     }
