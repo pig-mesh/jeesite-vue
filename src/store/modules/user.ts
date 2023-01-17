@@ -235,7 +235,7 @@ export const useUserStore = defineStore({
       this.setToken(undefined);
       this.setSessionTimeout(true);
       this.setUserInfo(null);
-      goLogin && router.push(PageEnum.BASE_LOGIN);
+      // goLogin && router.push(PageEnum.BASE_LOGIN);
     },
     /**
      * @description: Confirm before logging out
@@ -248,7 +248,9 @@ export const useUserStore = defineStore({
       //   title: () => h('span', t('sys.app.logoutTip')),
       //   content: () => h('span', t('sys.app.logoutMessage')),
       //   onOk: async () => {
-      await this.logout(true);
+      await this.logout(false);
+      location.href = 'http://127.0.0.1:3000/logout?redirect_url=http://127.0.0.1:3100/';
+
       //   },
       // });
     },

@@ -217,7 +217,7 @@
   }
 
   const handleSSOLogin = () => {
-    window.location.href = "http://127.0.0.1:3000/oauth2/authorize?client_id=jeesite&response_type=code&scope=server&redirect_uri=http://127.0.0.1:3100/sso&code_challenge=jeesite&code_challenge_method=S256"
+    window.location.href = "http://127.0.0.1:3000/oauth2/authorize?client_id=jeesite&response_type=code&scope=server&redirect_uri=http://127.0.0.1:3100/sso"
   }
 
   function selectText(id: string) {
